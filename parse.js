@@ -11,7 +11,7 @@ const xml = fs.readFileSync("BH_Progress_Assessment.xml",'utf8');
 
 
       //total 19 Controls in this xml.
-      //You can choose select each controls by changing index Object[i] located second element from the last.
+      //You can select each controls by changing index Object[i] located second element from the last.
       var controlAttribute =result["Viklele.FormDesigner"].Object.Property[16].Object[0].Property[3].Object[0].attr;
       var controlProperty = result["Viklele.FormDesigner"].Object.Property[16].Object[0].Property[3].Object[0].Property;
 
