@@ -1,5 +1,5 @@
 var parseString = require('xml2js').parseString;
-
+//To add package, use command 'npm install xml2js'
 const fs = require('fs');
 
 const xml = fs.readFileSync("BH_Progress_Assessment.xml",'utf8');
