@@ -3,7 +3,7 @@ var parseString = require('xml2js').parseString;
 const fs = require('fs');
 
 const xml = fs.readFileSync("BH_Progress_Assessment.xml",'utf8');
-  //parseing xml to json object.
+  //parsing xml to json object.
   parseString(xml,{explicitArray: false, attrkey:"attr",charkey:"textData"}, function(err,result){
     
 
