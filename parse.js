@@ -5,13 +5,13 @@ const fs = require('fs');
 const xml = fs.readFileSync("BH_Progress_Assessment.xml",'utf8');
   //parseing xml to json object.
   parseString(xml,{explicitArray: false, attrkey:"attr",charkey:"textData"}, function(err,result){
-      //Last property Array
+    
 
 
 
 
-      //total 19 controls in this xml.
-      //You can choose each controls by changing index Object[i] located second element from the last.
+      //total 19 Controls in this xml.
+      //You can choose select each controls by changing index Object[i] located second element from the last.
       var controlAttribute =result["Viklele.FormDesigner"].Object.Property[16].Object[0].Property[3].Object[0].attr;
       var controlProperty = result["Viklele.FormDesigner"].Object.Property[16].Object[0].Property[3].Object[0].Property;
 
