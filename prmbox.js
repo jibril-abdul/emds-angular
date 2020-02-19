@@ -1,47 +1,64 @@
 class Prmbox {
 
-  constructor(control, i){
-    this.isTabStop = control[i].Property[0].innerXML;
-    this.getTitle = control[i].Property[1].innerXML;
-    this.isUseCompatibleTextRendering = control[2].Property[6].innerXML;
-    this.getControls = control[i].Property[3].innerXML;
-    this.getDataBinding = control[i].Property[4].Property.innerXML;
-    this.getLocation = control[i].Property[5].innerXML;
-    this.name = control[i].Property[6].innerXML;
-    this.getSize = control[i].Property[7].innerXML;
-    this.getTabIndex = control[i].Property[8].innerXML;
-    this.isUseWaitCursor = control[i].Property[9].innerXML;
+  constructor(control, i) {
+    if (i == 2) {
+      this.tabStop = control[i].Property[0].innerXML;
+      this.title = control[i].Property[1].innerXML;
+      this.useCompatibleTextRendering = control[i].Property[2].innerXML;
+      this.controls = control[i].Property[3].innerXML;
+      this.dataBinding = control[i].Property[4].Property.innerXML;
+      this.font = control[i].Property[5].innerXML;
+      this.location = control[i].Property[6].innerXML;
+      this.name = control[i].Property[7].innerXML;
+      this.size = control[i].Property[8].innerXML;
+      this.tabIndex = control[i].Property[9].innerXML;
+      this.useWaitCursor = control[i].Property[10].innerXML;
+    } else {
+      this.tabStop = control[i].Property[0].innerXML;
+      this.title = control[i].Property[1].innerXML;
+      this.useCompatibleTextRendering = control[i].Property[2].innerXML;
+      this.controls = control[i].Property[3].innerXML;
+      this.dataBinding = control[i].Property[4].Property.innerXML;
+      this.location = control[i].Property[5].innerXML;
+      this.name = control[i].Property[6].innerXML;
+      this.size = control[i].Property[7].innerXML;
+      this.tabIndex = control[i].Property[8].innerXML;
+      this.useWaitCursor = control[i].Property[9].innerXML;
+    }
   }
 
-  isTabStop(){
-    return this.isTabStop;
+  isTabStop() {
+    return this.tabStop;
   }
-  getTitle(){
-    return this.getTitle;
+  getTitle() {
+    return this.title;
   }
-  isUseCompatibleTextRendering(){
-    return this.isUseCompatibleTextRendering;
+  isUseCompatibleTextRendering() {
+    return this.useCompatibleTextRendering;
   }
-  getControls(){
-    return this.getControls;
+  getControls() {
+    return this.controls;
   }
-  getDataBinding(){
-    return this.getDataBinding;
+  getDataBinding() {
+    return this.dataBinding;
   }
-  getLocation(){
-    return this.getLocation;
+  getLocation() {
+    return this.location;
   }
-  getName(){
+  getName() {
     return this.name;
   }
-  getSize(){
-    return this.getSize;
+  getSize() {
+    return this.size;
   }
-  getTabIndex(){
-    return this.getTabIndex;
+  getTabIndex() {
+    return this.tabIndex;
   }
-  isUseWaitCursor(){
-    return this.isUseWaitCursor;
+  isUseWaitCursor() {
+    return this.useWaitCursor;
+  }
+  getfont() {
+    return this.font;
   }
 
 
