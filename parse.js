@@ -2,6 +2,7 @@ var parseString = require('xml2js').parseString;
 
 const fs = require('fs');
 const prmbox = require('./prmbox');
+const prmlabel = require('./prmlabel');
 const xml = fs.readFileSync("BH_Progress_Assessment.xml", 'utf8');
 //parseing xml to json object.
 parseString(xml, {
@@ -23,11 +24,12 @@ parseString(xml, {
   prmBoxGroup.push(prmbox1 = new prmbox(controls, 4));
   prmBoxGroup.push(prmbox1 = new prmbox(controls, 5));
 
- prmBoxGroup.forEach(function(box){
-   console.log(box.getLocation());
+ //prmBoxGroup.forEach(function(box){
+   //console.log(box.getLocation());
 
- });
-
+ //});
+  const prmLabel2 = new prmlabel(controls, 6);
+  console.log(prmLabel2.getName());
 
   // const resultToString = JSON.stringify(result); //make it to string to save it into json file.
   // fs.writeFileSync("Assessment.json", resultToString) // writing into json file.
