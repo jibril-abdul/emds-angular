@@ -1,49 +1,90 @@
+const prmGroupBox = require('./controls/prmgroupbox');
+const prmLabel = require('./controls/prmlabel');
+const prmTextBox = require('./controls/prmtextbox');
+const prmRadioButton = require('./controls/prmradiobutton');
+const prmCheckBox = require('./controls/prmcheckbox');
 
 const fs = require('fs');
-const prompt = require('prompt')
+// const prompt = require('prompt')
 //var jsonRequest = prompt("Enter a json file: ");
 
 var json = JSON.parse(fs.readFileSync('./BH_Progress_Assessment.json'));
-var jsonProp = json['Viklele.FormDesigner'].Object.Property
-const grpboxtype = 'iMedica.Prm.Client.UI.BaseControls.PrmGroupBox, iMedica.Prm.Client.UI.BaseControls, Version=14.0.1404.2612, Culture=neutral, PublicKeyToken=null'
-const labeltype = 'iMedica.Prm.Client.UI.BaseControls.PrmLabel, iMedica.Prm.Client.UI.BaseControls, Version=14.0.1404.2612, Culture=neutral, PublicKeyToken=null'
-const textboxtype = 'iMedica.Prm.Client.UI.BaseControls.PrmTextBox, iMedica.Prm.Client.UI.BaseControls, Version=14.0.1404.2612, Culture=neutral, PublicKeyToken=null'
+var property = json['Viklele.FormDesigner'].Object.Property
 
-function findControls(jsonProp){
-    for(var i in jsonProp){
-        if(jsonProp[i].name == 'Controls'){
-            return jsonProp[i];
+
+const grpBoxes = [];
+const labels = [];
+const checkBoxes = [];
+const radioButtons = [];
+
+function findControls(property){
+    for(var i in property){
+        if(property[i].name == 'Controls'){
+            return property[i].Object;
         }
     }
 }
 
-function findGroupBox(controls){
+function createControls(){
+  var controls = findControls(property);
+  for (var controlNumber = 1; controlNumber < Object.keys(controls).length; controlNumber++) {
     for(var i in controls){
-        if(controls[i].type == grpbox){
-            return controls[i].Property;
-        }
+    switch (controls[i].name) {
+      case "PrmGroupBox"+controlNumber:
+        var grpbox = new prmGroupBox(controls[i])
+        grpBoxes.push(grpbox);
+        break;
+      case "PrmLabel"+controlNumber:
+        var label = new prmLabel(controls[i]);
+        labels.push(label);
+        break;
+      case "prmTextBox"+controlNumber:
+        var textbox = new prmTextBox(controls[i]);
+        textBoxes.push(textbox);
+        break;
+      case "prmRadioButton"+controlNumber:
+        var radioButton = new prmRadioButton(controls[i]);
+        radioButtons.push(radioButton);
+        break;
+      case "prmCheckBox"+controlNumber:
+        var checkBox = new prmCheckBox(controls[i]);
+        checkBoxes.push(checkBox);
+        break;
+      default:
+        break;
+      }
     }
+  }
 }
+//     for(var i in controls){
+//         if(controls[i].name == "PrmGroupBox"+controlNumber){
+//             var grpbox = new prmGroupBox(controls[i])
+//             grpBoxes.push(grpbox);
+//         }
+//         else if(controls[i].name == "PrmLabel"+controlNumber){
+//             var label = new prmLabel(controls[i]);
+//             labels.push(label);
+//         }
+//         else if(controls[i].name == "prmTextBox"+controlNumber){
+//             var textbox = new prmTextBox(controls[i]);
+//             textBoxes.push(textbox);
+//         }
+//         else if(controls[i].name == "prmRadioButton"+controlNumber){
+//             var radioButton = new prmRadioButton(controls[i]);
+//             radioButtons.push(radioButton);
+//         }
+//         else if(controls[i].name == "prmCheckBox"+controlNumber){
+//             var checkBox = new prmCheckBox(controls[i]);
+//             checkBoxes.push(checkBox);
+//         }
+//
+//     }
+//   }
+// }
 
-function findLabel(controls){
-    for(var i in controls){
-        if(controls[i].type == labeltype){
-            return controls[i].Property;
-        }
-    }
-}
-
-function findTextBox(controls){
-    for(var i in controls){
-        if(controls[i].type == textboxtype){
-            return controls[i].Property;
-        }
-    }
-}
-
-
-var controls = findControls(jsonProp).Object;
-var groupbox = findGroupBox(controls);
-var label = findLabel(controls);
-var textbox = findTextBox(controls);
-console.log(groupbox);
+createControls();
+// console.log(json);
+grpBoxes.forEach(function(element){
+  console.log(element);
+});
+// console.log([1]);
