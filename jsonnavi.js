@@ -84,7 +84,9 @@ function createControls(){
 
 createControls();
 // console.log(json);
-grpBoxes.forEach(function(element){
-  console.log(element);
-});
+// labels.forEach(function(element){
+//   console.log(element.textAlign);
+// });
+
+console.log(grpBoxes[0].controls);
 // console.log([1]);
