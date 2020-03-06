@@ -3,43 +3,52 @@ class Prmgroupbox {
   constructor(control) {
     this.type = control.type;
     this.name = control.name;
-    this.property = control.Property;
-  }
+      for(var i in control.Property){
+        switch(control.Property[i].name){
+          case "TabStop":
+            this.tabStop = control.Property[i].innerXML;
+            break;
+          
+          case "Text":
+            this.text = control.Property[i].innerXML;
+            break;
+          
+          case "UseCompatibleTextRendering":
+            this.useCompatibleTextRendering = control.Property[i].innerXML;
+            break;
+            
+          case "Controls":
+            this.controls = control.Property[i];
+            break;
+          
+          case "DataBindings":
+            this.dataBindings = control.Property[i];
+            break;
+          
+          case "Location":
+            this.location = control.Property[i].innerXML;
+            break;
+          
+          case "Name":
+            this.name = control.Property[i].innerXML;
+            break;
 
-  isTabStop() {
-    return this.property[0];
-  }
-  getTitle() {
-    return this.property[1];
-  }
-  isUseCompatibleTextRendering() {
-    return this.property[2];
+          case "Size":
+            this.size = control.Property[i].innerXML;
+            break;
+
+          case "TabIndex":
+            this.tabIndex = control.Property[i].innerXML;
+            break;
+
+          case "UseWaitCursor":
+            this.useWaitCursor = control.Property[i].innerXML;
+            break;
+            
+          default:
+            break;
+        }
+      }
     }
-  getControls() {
-    return this.property[3];
   }
-  // getDataBinding() {
-  //   return this.dataBinding;
-  // }
-  // getLocation() {
-  //   return this.location;
-  // }
-  // getName() {
-  //   return this.name;
-  // }
-  // getSize() {
-  //   return this.size;
-  // }
-  // getTabIndex() {
-  //   return this.tabIndex;
-  // }
-  // isUseWaitCursor() {
-  //   return this.useWaitCursor;
-  // }
-  // getfont() {
-  //   return this.font;
-  // }
-
-
-}
 module.exports = Prmgroupbox;
