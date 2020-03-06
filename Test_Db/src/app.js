@@ -17,7 +17,7 @@ con.connect((err) => {
   console.log('Connection established');
 });
 
-con.query('SELECT * FROM xmlhtmltable', (err,rows) => {
+con.query('SELECT xmldata FROM xmlhtmltable where name='BH_Progress_Assessment'', (err,rows) => {
   if(err) throw err;
 
   console.log('Data received from Db:');
