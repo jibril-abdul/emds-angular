@@ -3,44 +3,54 @@ class PrmRadioButton {
   constructor(control) {
     this.type = control.type;
     this.name = control.name;
-    this.property = control.Property;
+      for(var i in control.Property){
+        switch(control.Property[i].name){
+          case "AutoUseParentDataObject":
+            this.autoUseParentDataObject = control.Property[i].innerXML;
+            break;
+          case "UseVisualStyleBackColor":
+            this.useVisualStyleBackColor = control.Property[i].innerXML;
+            break;
 
-  }
-  isAutoUseParentDataObject(){
-    return this.property[0]
-  }
-  isTabStop(){
-    return this.property[1];
-  }
-  getText(){
-      return this.property[2];
-  }
-  isUseCompatibleTextRendering(){
-    return this.property[3];
-  }
-  isUseVisualStyleBackColor(){
-    return this.property[4];
-  }
-  getDataBinding(){
-    return this.property[5].Property;
-  }
+          case "Text":
+            this.text = control.Property[i].innerXML;
+            break;
 
-  getLocation(){
-    return this.property[6];
-  }
-  getName(){
-    return this.property[7];
-  }
-  getSize(){
-    return this.property[8];
-  }
-  getTabIndex(){
-    return this.property[9];
-  }
-  isUseWaitCursor(){
-    return this.property[10];
-  }
+          case "UseCompatibleTextRendering":
+            this.useCompatibleTextRendering = control.Property[i].innerXML;
+            break;
 
+          case "DataBindings":
+            this.dataBindings = control.Property[i];
+            break;
 
+          case "Location":
+            this.location = control.Property[i].innerXML;
+            var locationArr = this.location.split(',');
+            this.xCoordinate = locationArr[0];
+            this.yCoordinate = locationArr[1];
+            break;
+
+          case "Name":
+            this.name = control.Property[i].innerXML;
+            break;
+
+          case "Size":
+            this.size = control.Property[i].innerXML;
+            break;
+
+          case "TabIndex":
+            this.tabIndex = control.Property[i].innerXML;
+            break;
+
+          case "UseWaitCursor":
+            this.useWaitCursor = control.Property[i].innerXML;
+            break;
+
+          default:
+            break;
+        }
+      }
+    }
 }
 module.exports = PrmRadioButton;

@@ -21,6 +21,7 @@ app.get("/assessment", function(req,res){
           console.log(err);
         }
         else{
+          console.log(result);
           var xml = result[0].xmldata;
           parseString(xml, {
             explicitArray: false,
@@ -32,7 +33,9 @@ app.get("/assessment", function(req,res){
             //path for controls.
             var controls = result["Viklele.FormDesigner"].Object.Property
             // create each prmgroupbox by passing controls and index of Object.
-            console.log(Object.keys(controls).length);
+            //console.log(Object.keys(controls).length);
+            console.log(result);
+              res.send("<h1>hello world</h1>");
            });
 
         }

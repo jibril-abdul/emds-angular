@@ -1,6 +1,4 @@
-
 class PrmLabel {
-
   constructor(control) {
     this.type = control.type;
     this.name = control.name;
@@ -9,23 +7,26 @@ class PrmLabel {
           case "TextAlign":
             this.textAlign = control.Property[i].innerXML;
             break;
-          
+
           case "Text":
             this.text = control.Property[i].innerXML;
             break;
-          
+
           case "UseCompatibleTextRendering":
             this.useCompatibleTextRendering = control.Property[i].innerXML;
             break;
-          
+
           case "DataBindings":
             this.dataBindings = control.Property[i];
             break;
-          
+
           case "Location":
             this.location = control.Property[i].innerXML;
+            var locationArr = this.location.split(',');
+            this.xCoordinate = locationArr[0];
+            this.yCoordinate = locationArr[1];
             break;
-          
+
           case "Name":
             this.name = control.Property[i].innerXML;
             break;
@@ -48,4 +49,4 @@ class PrmLabel {
       }
     }
   }
-  module.exports = PrmLabel;
+module.exports = PrmLabel;
