@@ -1,4 +1,7 @@
+const MySql = require('./mysql.js') // Import mysql.js class
 var http = require('http'); // Import Node.js core module
+
+let databse = new MySql();
 
 var server = http.createServer(function (req, res) {   //create web server
     if (req.url == '/') { //check the URL of the current request
@@ -26,9 +29,12 @@ var server = http.createServer(function (req, res) {   //create web server
     
     }
     else if (req.url == '/data') { //check the URL of the current request
+        
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.write(JSON.stringify({ message: "Hello World"}));  
-        res.end();  
+        //res.write(database.initQuery());
+        databse.initQuery(res);  
+        //res.end();
+        //databse.end();
     }
     else
         res.end('Invalid Request!');
