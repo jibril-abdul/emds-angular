@@ -1,45 +1,64 @@
-class Prmgroupbox {
+class PrmGroupBox {
 
   constructor(control) {
     this.type = control.type;
     this.name = control.name;
-    this.property = control.Property;
-  }
+    for(var i in control.Property){
+      switch(control.Property[i].name){
+        case "TabStop":
+          this.tabStop = control.Property[i].innerXML;
+          break;
+        case "Controls":
+          this.controls = control.Property[i].Object;
+          break;
 
-  isTabStop() {
-    return this.property[0];
+        case "UseCompatibleTextRendering":
+          this.useCompatibleTextRendering = control.Property[i].innerXML;
+          break;
+
+        case "Text":
+          this.text = control.Property[i].innerXML;
+          break;
+
+        case "Font":
+          this.font = control.Property[i].innerXML;
+          break;
+
+        case "DataBindings":
+          this.dataBindings = control.Property[i];
+          break;
+
+        case "Location":
+          this.location = control.Property[i].innerXML;
+          var locationArr = this.location.split(',');
+          this.xCoordinate = locationArr[0];
+          this.yCoordinate = locationArr[1];
+          break;
+
+        case "Name":
+          this.name = control.Property[i].innerXML;
+          break;
+
+        case "Size":
+          this.size = control.Property[i].innerXML;
+          break;
+
+        case "TabIndex":
+          this.tabIndex = control.Property[i].innerXML;
+          break;
+
+        case "UseWaitCursor":
+          this.useWaitCursor = control.Property[i].innerXML;
+          break;
+
+        default:
+          break;
   }
-  getTitle() {
-    return this.property[1];
-  }
-  isUseCompatibleTextRendering() {
-    return this.property[2];
-    }
-  getControls() {
-    return this.property[3];
-  }
-  // getDataBinding() {
-  //   return this.dataBinding;
-  // }
-  // getLocation() {
-  //   return this.location;
-  // }
-  // getName() {
-  //   return this.name;
-  // }
-  // getSize() {
-  //   return this.size;
-  // }
-  // getTabIndex() {
-  //   return this.tabIndex;
-  // }
-  // isUseWaitCursor() {
-  //   return this.useWaitCursor;
-  // }
-  // getfont() {
-  //   return this.font;
-  // }
+}
+
+}
+
 
 
 }
-module.exports = Prmgroupbox;
+module.exports = PrmGroupBox;
