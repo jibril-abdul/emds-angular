@@ -35,7 +35,7 @@ app.get("/assessment", function(req,res){
             // create each prmgroupbox by passing controls and index of Object.
             //console.log(Object.keys(controls).length);
             console.log(result);
-              res.write("<h1>hello world</h1>");
+              res.send("<h1>hello world</h1>");
            });
 
         }
