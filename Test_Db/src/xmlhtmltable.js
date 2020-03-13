@@ -8,14 +8,14 @@ function createRouter(db) {
   // the routes are defined here
   router.get('/xmlhtmltable', function (req, res, next) {
     db.query(
-      'SELECT * FROM xmlhtmltable',
-      (error, results) => {
-        if (error) {
-          console.log(error);
-          res.status(500).json({status: 'error'});
-        } else {
-          res.status(200).json(results);
-        }
+      'SELECT XMLData from xmlhtmltable where Name = ?',
+      req.query.name,
+      (err, res) => {
+         if (err) {
+            console.log(error);
+          } else { 
+           console.log(res);
+          }
       }
     );
   });
@@ -24,3 +24,5 @@ function createRouter(db) {
 }
 
 module.exports = createRouter;
+
+//http://localhost:8080/xmlhtmltable?name=BH_Progress_Assessment
