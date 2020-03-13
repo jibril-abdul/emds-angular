@@ -26,7 +26,7 @@ class PrmCheckBox {
 
         case "Location":
           this.location = control.Property[i].innerXML;
-          var locationArr = this.location.split(',');
+          var locationArr = this.location.split(','+' ');
           this.xCoordinate = locationArr[0];
           this.yCoordinate = locationArr[1];
           break;
