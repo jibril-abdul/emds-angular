@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/jibril-abdul/emds-angular#readme",
   "dependencies": {
-    "xml2js": "^0.4.23",
     "cors": "2.8.5",
+    "ejs": "^3.0.1",
     "express": "4.17.1",
-    "mysql": "2.17.1"
+    "lodash": "^4.17.15",
+    "mysql": "2.17.1",
+    "nodemon": "^2.0.2",
+    "serve-favicon": "^2.5.0",
+    "xml2js": "^0.4.23"
   }
 }
