@@ -1,1 +1,27 @@
+<%- include('header'); -%>
+
+
 <h1>assessment</h1>
+
+<% groupBox.forEach(function(box){ %>
+<table>
+  <tr>
+    <th><%= box.text %></th>
+  </tr>
+  <br />
+  <tr>
+    <% box.inner.forEach(function(control){ %>
+    <td><%= control.text %></td>
+    <% }) %>
+  </tr>
+
+</table>
+
+
+<%}) %>
+
+
+
+
+
+<%- include('footer'); -%>
