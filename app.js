@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const parseString = require('xml2js').parseString;
-const grpBoxes = require('./controls/groupBoxes');
+const control = require('./controls/sorted_controls');
 
 
 const app = express();
@@ -42,7 +42,7 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 // after hitting  endpoints, parameter of call back function req.params contains
 // its key, value.
 app.get("/:custom", function(req,res){
-  let paraName = "%\_"+req.params.custom+"%";  // Variable paraName cantains the value of quesry string.
+  let paraName = "%\_"+req.params.custom+"%";  // letiable paraName cantains the value of quesry string.
   let sql = "SELECT xmldata FROM xmlhtmltable WHERE Name LIKE ?";
       pool.query(sql, paraName, function(err, result, fields){
         if(err){
@@ -58,11 +58,14 @@ app.get("/:custom", function(req,res){
           }, function(err, result) {
 
             //path for controls.
-            // console.log(result);
             let property = result['Viklele.FormDesigner'].Object.Property
-            let controls = grpBoxes.createBoxes(grpBoxes.findControls(property));
-            // console.log(controls);
-            console.log(controls.groupBox[0].inner)
+            //sorted groupBoxes
+            let controls = control.sortControls(control.findControls(property));
+
+
+            console.log(controls);
+            
+            // console.log(controls.outerControls[0].inner)
 
 
             res.render("form", controls);
