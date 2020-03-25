@@ -3,22 +3,25 @@
 
 <h1>assessment</h1>
 
-<% groupBox.forEach(function(box){ %>
+<% outerControls.forEach(function(outerControl){ %>
 <table>
   <tr>
-    <th><%= box.text %></th>
+    <th><%= outerControl.text %></th>
   </tr>
   <br />
   <tr>
-    <% box.inner.forEach(function(control){ %>
-    <td><%= control.text %></td>
-    <% }) %>
+    <% if(outerControl.hasOwnProperty('inner')){ %>
+      <% outerControl.inner.forEach(function(innerControl){ %>
+          <td><%= innerControl.text %></td>
+      <% }) %>
+    <% } %>
+
   </tr>
 
 </table>
 
 
-<%}) %>
+<% }) %>
 
 
 

@@ -3,8 +3,8 @@ class Control {
   constructor(control) {
     this.type = control.type;
     this.name = control.name;
-    
-    for (var i in control.Property) {
+
+    for (let i in control.Property) {
       switch (control.Property[i].name) {
 
         case "AutoUseParentDataObject":
@@ -49,7 +49,7 @@ class Control {
 
         case "Location":
           this.location = control.Property[i].innerXML;
-          var locationArr = this.location.split(',' + ' ');
+          let locationArr = this.location.split(',' + ' ');
           this.xCoordinate = locationArr[0];
           this.yCoordinate = locationArr[1];
           break;
