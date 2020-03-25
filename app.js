@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
-var parseString = require('xml2js').parseString;
-var jsonnavi = require('./controls/controls');
+const parseString = require('xml2js').parseString;
+const grpBoxes = require('./controls/groupBoxes');
 
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.static(__dirname+"/public"));
 app.set("view engine", "ejs");
 
 //Create db connection pool
-var pool = mysql.createPool({
+let pool = mysql.createPool({
     connectionLimit : 10, // default = 10
     host            : 'localhost',
     user            : 'root',
@@ -30,7 +30,7 @@ var pool = mysql.createPool({
 //setting root end point of the app
 app.get("/",function(req,res){
 
-  res.render("assessment");
+  res.send("Home");
 });
 
 //in case of browser looking for favicon when we do get request.
@@ -42,14 +42,14 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 // after hitting  endpoints, parameter of call back function req.params contains
 // its key, value.
 app.get("/:custom", function(req,res){
-  var paraName = "%\_"+req.params.custom+"%";  // Variable paraName cantains the value of quesry string.
-  var sql = "SELECT xmldata FROM xmlhtmltable WHERE Name LIKE ?";
+  let paraName = "%\_"+req.params.custom+"%";  // Variable paraName cantains the value of quesry string.
+  let sql = "SELECT xmldata FROM xmlhtmltable WHERE Name LIKE ?";
       pool.query(sql, paraName, function(err, result, fields){
         if(err){
           console.log(err);
         }
         else{
-          var xml = result[0].xmldata;
+          let xml = result[0].xmldata;
           parseString(xml, {
             explicitArray: false,
             charkey: "innerXML",
@@ -58,19 +58,14 @@ app.get("/:custom", function(req,res){
           }, function(err, result) {
 
             //path for controls.
-            console.log(result);
-            var property = result['Viklele.FormDesigner'].Object.Property
-            var controls = jsonnavi.createControls(jsonnavi.findControls(property));
-            console.log(controls.groupBox[0]);
+            // console.log(result);
+            let property = result['Viklele.FormDesigner'].Object.Property
+            let controls = grpBoxes.createBoxes(grpBoxes.findControls(property));
+            // console.log(controls);
+            console.log(controls.groupBox[0].inner)
 
 
-
-            // console.log(controls.radioButton[0].xCoordinate);
-            // console.log(controls.radioButton[0].yCoordinate);
-            // create each prmgroupbox by passing controls and index of Object.
-            //console.log(Object.keys(controls).length);
-
-            res.send("<h1>hello world</h1>");
+            res.render("form", controls);
 
            });
 
@@ -81,5 +76,5 @@ app.get("/:custom", function(req,res){
 });
 
 app.listen(process.env.PORT || 4000, function(){    //listening to dynamic port, local on 3000
-    console.log("server is running on port 3000");
+    console.log("server is running on port 4000");
   });

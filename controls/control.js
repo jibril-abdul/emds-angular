@@ -1,15 +1,34 @@
-class PrmCheckBox {
+class Control {
 
   constructor(control) {
     this.type = control.type;
     this.name = control.name;
-    for(var i in control.Property){
-      switch(control.Property[i].name){
-        case "FlatStyle":
-          this.tabStop = control.Property[i].innerXML;
+    
+    for (var i in control.Property) {
+      switch (control.Property[i].name) {
+
+        case "AutoUseParentDataObject":
+          this.autoUseParentDataObject = control.Property[i].innerXML;
           break;
+
+        case "TextAlign":
+          this.textAlign = control.Property[i].innerXML;
+          break;
+
         case "UseVisualStyleBackColor":
           this.useVisualStyleBackColor = control.Property[i].innerXML;
+          break;
+        case "FlatStyle":
+
+          this.tabStop = control.Property[i].innerXML;
+          break;
+        case "TabStop":
+
+          this.tabStop = control.Property[i].innerXML;
+          break;
+
+        case "Controls":
+          this.controls = control.Property[i].Object;
           break;
 
         case "UseCompatibleTextRendering":
@@ -20,13 +39,17 @@ class PrmCheckBox {
           this.text = control.Property[i].innerXML;
           break;
 
+        case "Font":
+          this.font = control.Property[i].innerXML;
+          break;
+
         case "DataBindings":
           this.dataBindings = control.Property[i];
           break;
 
         case "Location":
           this.location = control.Property[i].innerXML;
-          var locationArr = this.location.split(','+' ');
+          var locationArr = this.location.split(',' + ' ');
           this.xCoordinate = locationArr[0];
           this.yCoordinate = locationArr[1];
           break;
@@ -49,9 +72,12 @@ class PrmCheckBox {
 
         default:
           break;
-  }
-}
-}
+      }
+    }
 
   }
-  module.exports = PrmCheckBox;
+
+
+
+}
+module.exports = Control;
