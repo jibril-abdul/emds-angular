@@ -42,8 +42,8 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 // after hitting  endpoints, parameter of call back function req.params contains
 // its key, value.
 app.get("/:custom", function(req,res){
-  let paraName = "%\_"+req.params.custom+"%";  // letiable paraName cantains the value of quesry string.
-  let sql = "SELECT xmldata FROM xmlhtmltable WHERE Name LIKE ?";
+  let paraName = req.params.custom;  // letiable paraName cantains the value of quesry string.
+  let sql = "SELECT xmldata FROM xmlhtmltable WHERE Name = ?";
       pool.query(sql, paraName, function(err, result, fields){
         if(err){
           console.log(err);
@@ -61,14 +61,20 @@ app.get("/:custom", function(req,res){
             let property = result['Viklele.FormDesigner'].Object.Property
             //sorted groupBoxes
             let controls = control.sortControls(control.findControls(property));
+            const options ={
+              title: paraName,
+              controls: controls
 
-
-            console.log(controls);
-            
+            }
+            // console.log(options.controls.outerControls[0]);
+            // console.log(options.controls.outerControls[0].inner);
             // console.log(controls.outerControls[0].inner)
+            console.log(paraName+" has been rendered.");
 
 
-            res.render("form", controls);
+            res.render("form", options);
+            console.log(paraName+" has been loaded.");
+
 
            });
 
