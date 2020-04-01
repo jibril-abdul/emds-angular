@@ -1,0 +1,66 @@
+<%- include('header'); -%>
+
+
+<h1><%= title %></h1>
+
+<section id="form">
+
+  <form action="/" method="post">
+
+    <div class="outer">
+      <% controls.outerControls.forEach(function(outerControl){ %>
+
+      <% if(outerControl.type.includes('TextBox')){ %>
+      <input type="text" id="<%= outerControl.text %>" name="<%= outerControl.text %>" value="<%= outerControl.text %>">
+      <%} else if(outerControl.type.includes('Label')){ %>
+      <label for="<%= outerControl.text %>"><span><%= outerControl.text %></span></label>
+
+      <%} else if(outerControl.type.includes('RadioButton')){ %>
+      <input type="radio" id="<%= outerControl.text %>" name="<%= outerControl.text %>" value="<%= outerControl.text %>">
+      <label for="<%= outerControl.text %>"><span><%= outerControl.text %></span></label>
+
+      <%} else if(outerControl.type.includes('CheckBox')){ %>
+      <input type="checkbox" id="<%= outerControl.text %>" name="<%= outerControl.text %>" value="<%= outerControl.text %>">
+      <label for="<%= outerControl.text %>"><span><%= outerControl.text %></span></label>
+
+      <% } else { %>
+      <label><%= outerControl.text %></label>
+      <% }%>
+      <div class="inner">
+        <% if(outerControl.hasOwnProperty('inner')){ %>
+        <% outerControl.inner.forEach(function(innerControl){ %>
+        <% if(innerControl.type.includes('RadioButton')){ %>
+        <input type="radio" id="<%= innerControl.text %>" name="<%= outerControl.text %>" value="<%= innerControl.text %>">
+        <label for="<%= innerControl.text %>"><span><%= innerControl.text %></span></label>
+
+        <% } else if(innerControl.type.includes('TextBox')){ %>
+        <br />
+        <input type="text" id="<%= innerControl.text %>" name="<%= outerControl.text %>" value="<%= innerControl.text %>">
+        <br />
+        <% } else if(innerControl.type.includes('CheckBox')){ %>
+
+        <input type="checkbox" id="<%= innerControl.text %>" name="<%= outerControl.text %>" value="<%= innerControl.text %>">
+        <label for="<%= innerControl.text %>"><span><%= innerControl.text %></span></label>
+        <br />
+        <% } else if(innerControl.type.includes('Label')){ %>
+        <br />
+        <label for="<%= innerControl.text %>"><span><%= innerControl.text %></span></label>
+
+        <% }%>
+
+        <% }) %>
+        <% } %>
+      </div>
+      <br />
+      <% }) %>
+    </div>
+
+    <button type="submit" name="button" value="<%= title %>">submit</button>
+  </form>
+</section>
+
+
+
+
+
+<%- include('footer'); -%>
