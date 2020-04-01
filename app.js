@@ -50,6 +50,7 @@ app.get("/:custom", function(req,res){
         }
         else{
           let xml = result[0].xmldata;
+
           parseString(xml, {
             explicitArray: false,
             charkey: "innerXML",
