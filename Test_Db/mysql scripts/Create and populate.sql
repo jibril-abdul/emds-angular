@@ -1,12 +1,4 @@
-create database if not exists test;
-
-use test;
-
-create user 'test'@'localhost' identified by 'password';
-grant all on test.* to 'test'@'localhost';
-
-show tables;
-
+CREATE SCHEMA assessment;
 drop table if exists `xmlhtmltable`;
 
 CREATE TABLE if not exists `xmlhtmltable` (
