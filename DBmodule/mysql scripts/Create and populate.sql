@@ -1,14 +1,10 @@
-drop user 'test'@'localhost';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 flush privileges;
-create database if not exists test;
 
-use test;
+CREATE DATABASE assessment;
 
-create user 'test'@'localhost' identified with mysql_native_password by 'password';
-grant all on test.* to 'test'@'localhost';
-
-show tables;
-
+use assessment;
 drop table if exists `xmlhtmltable`;
 
 CREATE TABLE if not exists `xmlhtmltable` (
@@ -19,8 +15,6 @@ CREATE TABLE if not exists `xmlhtmltable` (
   `JSONData` json DEFAULT NULL,
   PRIMARY KEY (`UID`)
 );
-
-describe xmlhtmltable;
 
 insert into `xmlhtmltable` (
 `uid`, `name`, `xmldata`)

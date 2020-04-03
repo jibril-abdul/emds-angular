@@ -1,12 +1,7 @@
 <%- include('header'); -%>
-
-
 <h1><%= title %></h1>
-
 <section id="form">
-
   <form action="/" method="post">
-
     <div class="outer">
       <% controls.outerControls.forEach(function(outerControl){ %>
 
@@ -58,9 +53,5 @@
     <button type="submit" name="button" value="<%= title %>">submit</button>
   </form>
 </section>
-
-
-
-
 
 <%- include('footer'); -%>
