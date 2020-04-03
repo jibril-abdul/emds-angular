@@ -9,8 +9,8 @@ checkout development branch from repo directory using 'git checkout development'
 
 run 'npm i' from repo directory to install necessary node modules for app
 
-run 'node app.js' to start web service on localhost:4000
+run 'node app.js' to start web service on port 4000
 
-in browser: go to 'localhost:4000/?'
+in browser: go to 'localhost:4000/test'
 
-this will display a confirmation message and the web service console log will return the file as JSON
+this will display the assessment form and the web service console will say it's been rendered
