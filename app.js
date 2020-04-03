@@ -1,6 +1,6 @@
 const express = require('express');
-const dbAPI = require('./DBManager');
-const xmlParser = require('./XMLParser');
+const dbAPI = require('./DBmodule/DBManager');
+const xmlParser = require('./controls/XMLParser');
 const control = require('./controls/sort');
 const app = express();
 
@@ -27,9 +27,9 @@ app.get("/:custom", (req, res) => {
       let property = json['Viklele.FormDesigner'].Object.Property;
       //sorted outercontrols
       let controls = control.sortControls(control.findControls(property));
-      
+
       // console.log(controls);
-      
+
       const options = {
         title: paraName,
         controls: controls
@@ -42,6 +42,6 @@ app.get("/:custom", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 4000, () => { 
+app.listen(process.env.PORT || 4000, () => {
   console.log("server is running on port 4000");
 });
