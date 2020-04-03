@@ -3,7 +3,6 @@ function Control(controls) {
     this.name = controls.name;
     for (let i in controls.Property) {
       switch (controls.Property[i].name) {
-
         case "AutoUseParentDataObject":
           this.autoUseParentDataObject = controls.Property[i].innerXML;
           break;
