@@ -43,25 +43,23 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.get("/:custom", (req, res) => {
-  let paraName = req.params.custom; // parsed quesry string.
-  dbAPI.select(paraName, (xml) => {
+app.get("/xmlhtmltable", function (req, res, next) {
+  var tableName = req.query.name;
+  dbAPI.select(tableName, (xml) => {
     xmlParser.xmltojson(xml, (json) => {
       //path for controls.
       let property = json['Viklele.FormDesigner'].Object.Property;
       //sorted outercontrols
       let controls = control.sortControls(control.findControls(property));
 
-      // console.log(controls);
-
       const options = {
-        title: paraName,
+        title: tableName,
         controls: controls
       }
 
       res.render("form", options);
 
-      console.log(paraName + " has been rendered.");
+      console.log(tableName + " has been rendered.");
     });
   });
 });
@@ -69,3 +67,5 @@ app.get("/:custom", (req, res) => {
 app.listen(process.env.PORT || 4000, () => {
   console.log("server is running on port 4000");
 });
+
+//http://localhost:4000/xmlhtmltable?name=BH_Progress_Assessment
