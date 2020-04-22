@@ -14,11 +14,12 @@ module.exports.select = (paraName, callback) => {
     if (err) {
       console.log(err);
     } else {
-      let xml = result[0].xmldata;
-      if (typeof callback == "function") {
-        callback(xml);
+        if(result.length > 0){
+          let xml = result[0].xmldata;
+          if (typeof callback == "function") {
+            callback(xml);
+        }
       }
-
     }
   });
 };
